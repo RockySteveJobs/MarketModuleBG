@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>  
+        <typeAlias alias="Carousel" type="com.wqz.marketbg.pojo.Carousel"/>
+        <typeAlias alias="Product" type="com.wqz.marketbg.pojo.Product"/>
+        <typeAlias alias="ShoppingCart" type="com.wqz.marketbg.pojo.ShoppingCart"/>
+        <typeAlias alias="User" type="com.wqz.marketbg.pojo.User"/>
+        <typeAlias alias="UserProduct" type="com.wqz.marketbg.pojo.UserProduct"/>
+        
+    </typeAliases> 
+
+    <environments default="development">
+        <environment id="development">
+        <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+            <property name="driver" value="com.mysql.jdbc.Driver"/>
+            <!-- 10.148.83.228:3306 -->
+            <property name="url" value="jdbc:mysql://localhost:3306/market_db?useUnicode=true&amp;characterEncoding=UTF8&amp;autoReconnect=true&amp;failOverReadOnly=false"/>
+            <property name="username" value="root"/>
+            <property name="password" value=""/>
+            </dataSource>
+        </environment>
+    </environments>
+    
+    <mappers>
+        <mapper resource="com/wqz/marketbg/dao/xml/CarouselMapper.xml"/>
+        <mapper resource="com/wqz/marketbg/dao/xml/ProductMapper.xml"/>
+        <mapper resource="com/wqz/marketbg/dao/xml/ShoppingCartMapper.xml"/>
+        <mapper resource="com/wqz/marketbg/dao/xml/UserMapper.xml"/>
+        <mapper resource="com/wqz/marketbg/dao/xml/UserProductMapper.xml"/>
+    </mappers>
+    
+</configuration>
