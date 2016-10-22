@@ -4,39 +4,31 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wqz.marketbg.pojo.Carousel;
 import com.wqz.marketbg.pojo.Product;
-import com.wqz.marketbg.pojo.ShoppingCartEx;
 import com.wqz.marketbg.service.ProductService;
 import com.wqz.marketbg.service.impl.ProductServiceImpl;
 
 @Controller
-@RequestMapping("/market")
-public class MarketModuleController 
+@RequestMapping("/product")
+public class ProductController 
 {
 	private ProductService iProduct = new ProductServiceImpl();
 	
-	@RequestMapping(value = "/productGetCarousel")
+	@RequestMapping(value = "/productGetCarousel" ,method=RequestMethod.GET)
     @ResponseBody
     public List<Carousel> selectCarousel()
     {
         return iProduct.getCarouselList();
     }
 	
-	@RequestMapping(value = "/productGetShoppingCart")
+	@RequestMapping(value = "/productGetSerach" ,method=RequestMethod.GET)
     @ResponseBody
-    public List<ShoppingCartEx> selectShoppingCart(
-    		@RequestParam(required=true)Integer userid)
-    {
-        return iProduct.getShoppingCart(userid);
-    }
-	
-	@RequestMapping(value = "/productGetSerach")
-    @ResponseBody
-    public List<Product> getSerach(
+    public List<Product> selectSerach(
     		@RequestParam(required=true)String serach,
     		@RequestParam(required=true)Integer start,
     		@RequestParam(required=true)Integer size)
@@ -44,15 +36,17 @@ public class MarketModuleController
 		return iProduct.getSerach(serach,start,size);
     }
 	
-	@RequestMapping(value = "/productCreate")
+	@RequestMapping(value = "/productCreate" ,method=RequestMethod.POST)
     @ResponseBody
     public Integer createProduct(
-    		@RequestParam(required=true)String name,
-    		@RequestParam(required=true)Float price,
-    		@RequestParam(required=true)Integer type,
-    		@RequestParam(required=true)String imageaddress,
-    		@RequestParam(required=true)String introduce)
+    		@RequestParam(value="name",required=true)String name,
+    		@RequestParam(value="price",required=true)Float price,
+    		@RequestParam(value="type",required=true)Integer type,
+    		@RequestParam(value="imageaddress",required=true)String imageaddress,
+    		@RequestParam(value="introduce",required=true)String introduce)
     {
 		return iProduct.insertProduct(new Product(name, price, type, imageaddress, introduce));
     }
+
+	
 }

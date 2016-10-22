@@ -12,7 +12,6 @@ import com.wqz.marketbg.dao.CarouselMapper;
 import com.wqz.marketbg.dao.ProductMapper;
 import com.wqz.marketbg.pojo.Carousel;
 import com.wqz.marketbg.pojo.Product;
-import com.wqz.marketbg.pojo.ShoppingCartEx;
 import com.wqz.marketbg.service.ProductService;
 
 public class ProductServiceImpl implements ProductService
@@ -57,24 +56,6 @@ public class ProductServiceImpl implements ProductService
 		return cl;
 	}
 
-
-	public List<ShoppingCartEx> getShoppingCart(Integer userid) 
-	{
-		List<ShoppingCartEx> scl;
-		
-		SqlSession session = sqlSessionFactory.openSession();
-		try
-		{
-			ProductMapper pm = session.getMapper(ProductMapper.class);
-			scl = pm.selectShoppingCart(userid);
-		}
-		finally
-		{
-			session.close();
-		}
-		
-		return scl;
-	}
 	
 	public List<Product> getSerach(String serach,Integer start,Integer size) 
 	{
@@ -92,5 +73,22 @@ public class ProductServiceImpl implements ProductService
 		}
 		
 		return pl;
+	}
+	
+	public Integer insertProduct(Product product) 
+	{
+		SqlSession session = sqlSessionFactory.openSession();
+		try
+		{
+			ProductMapper pm = session.getMapper(ProductMapper.class);
+			pm.insertSelective(product);
+			session.commit();
+		}
+		finally
+		{
+			session.close();
+		}
+		
+		return 0;
 	}
 }

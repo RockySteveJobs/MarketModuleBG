@@ -1,6 +1,7 @@
 package com.wqz.marketbg.pojo;
 
-public class ShoppingCart {
+public class ShoppingCart 
+{
     private Integer id;
 
     private Integer userid;
@@ -11,6 +12,19 @@ public class ShoppingCart {
 
     private Integer number;
 
+    public ShoppingCart()
+    {
+    	
+    }
+    
+    public ShoppingCart(Integer userid,Integer productid,
+    		Float price,Integer number)
+    {
+    	this.userid = userid;
+    	this.productid = productid;
+    	this.price = price;
+    	this.number = number;
+    }
     public Integer getId() {
         return id;
     }

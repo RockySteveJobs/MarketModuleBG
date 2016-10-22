@@ -21,6 +21,7 @@
   	<result column="introduce" property="introduce" jdbcType="LONGVARCHAR" />
   	
     <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="shoppingCartId" property="shoppingcartid" jdbcType="INTEGER" />
   </resultMap>
   
   <sql id="Base_Column_List" >
@@ -46,7 +47,7 @@
   </select>
   
   <select id="selectShoppingCart" resultMap="ShoppingCartMap">
-    SELECT product.*,shoppingcart.number
+    SELECT product.*,shoppingcart.number,shoppingcart.id AS shoppingCartId
 	FROM product,shoppingcart
 	WHERE product.id = shoppingcart.productId
 		AND shoppingcart.userId = #{userid,jdbcType=INTEGER}

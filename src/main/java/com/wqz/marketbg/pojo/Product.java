@@ -1,6 +1,22 @@
 package com.wqz.marketbg.pojo;
 
 public class Product {
+	
+	public Product()
+	{
+		
+	}
+	
+	public Product(String name,Float price,Integer type,
+			String imageaddress,String introduce)
+	{
+		this.name = name;
+		this.price = price;
+		this.type = type;
+		this.imageaddress = imageaddress;
+		this.introduce = introduce;
+	}
+	
     private Integer id;
 
     private String name;

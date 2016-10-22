@@ -3,6 +3,7 @@ package com.wqz.marketbg.pojo;
 public class ShoppingCartEx 
 {
 	public Integer number;
+	public Integer shoppingcartid;
 	
 	//----------------------
 	private Integer id;

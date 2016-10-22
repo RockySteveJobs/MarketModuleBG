@@ -27,6 +27,20 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="login" resultMap="BaseResultMap">
+    select *
+    from user
+    where account = #{account,jdbcType=INTEGER}
+      and password = #{password,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getAccountCount" resultType="java.lang.Integer">
+    select COUNT(id)
+    from user
+    where account = #{account,jdbcType=INTEGER}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
