@@ -23,6 +23,9 @@ public class UserController
     public Integer register(@RequestParam(required=true)String account,
     		@RequestParam(required=true)String password)
     {
+		if(checkAccount(account))
+			return 1;
+		
 		User user = new User();
 		user.setAccount(account);
 		user.setPassword(password);
